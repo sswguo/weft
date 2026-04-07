@@ -773,11 +773,11 @@ spec:
         fi
 
         # if maven settings exists, mount it 
-        maven_settings="/tmp/cachi2/output/settings.xml"                                                                                                                                                                         
-        if [ -f "$maven_settings" ]; then                                                                                                                                                                                   
-          echo "Mounting Maven settings.xml to $(params.MAVEN_SETTINGS_TARGET)"                                                                                                                                                  
-          VOLUME_MOUNTS+=(--volume "${maven_settings}:$(params.MAVEN_SETTINGS_TARGET)")                                                                                                                                          
-        fi 
+        #maven_settings="/tmp/cachi2/output/settings.xml"                                                                                                                                                                         
+        #if [ -f "$maven_settings" ]; then                                                                                                                                                                                   
+        #  echo "Mounting Maven settings.xml to $(params.MAVEN_SETTINGS_TARGET)"                                                                                                                                                  
+        #  VOLUME_MOUNTS+=(--volume "${maven_settings}:$(params.MAVEN_SETTINGS_TARGET)")                                                                                                                                          
+        #fi 
 
         DEFAULT_LABELS=(
           "--label" "architecture=$(uname -m)"
