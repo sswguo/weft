@@ -226,14 +226,22 @@ spec:
       runAfter:
       - prefetch-dependencies
       taskRef:
+      #  params:
+      #  - name: name
+      #    value: buildah-oci-ta
+      #  - name: bundle
+      #    value: quay.io/konflux-ci/tekton-catalog/task-buildah-oci-ta:0.9@sha256:cad04a0f4464283714c23940ef6052753821eff7544ec282e2a4707aa264aaf3
+      #  - name: kind
+      #    value: task
+      #  resolver: bundles
+      resolver: git
         params:
-        - name: name
-          value: buildah-oci-ta
-        - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-buildah-oci-ta:0.9@sha256:cad04a0f4464283714c23940ef6052753821eff7544ec282e2a4707aa264aaf3
-        - name: kind
-          value: task
-        resolver: bundles
+        - name: url
+          value: $(params.git-url)
+        - name: revision
+          value: $(params.revision)
+        - name: pathInRepo
+          value: ".tekton/buildah-oci-ta.yaml"
     - name: build-image-index
       params:
       - name: IMAGE
