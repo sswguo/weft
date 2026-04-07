@@ -143,7 +143,7 @@ spec:
         fi
     - name: prefetch-dependencies
       #image: quay.io/konflux-ci/hermeto:0.48.0@sha256:105b953463a203b82223cc54fb466ee0395ae9cca67bcdbbcbec4c340d511f26
-      image: quay.io/sswguo/hermeto:konflux-java-build
+      image: quay.io/sswguo/hermeto:konflux-java-build@sha256:97041a91a5dcc07237d5437b98b1cab747cc7b89d57ada0929e367491dbd3210
       volumeMounts:
         - mountPath: /mnt/trusted-ca
           name: trusted-ca

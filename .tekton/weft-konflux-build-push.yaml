@@ -57,11 +57,11 @@ spec:
       description: Skip checks against built image
       name: skip-checks
       type: string
-    - default: "false"
+    - default: "true"
       description: Execute the build with network isolation
       name: hermetic
       type: string
-    - default: ""
+    - default: "maven"
       description: Build dependencies to be prefetched
       name: prefetch-input
       type: string
@@ -163,14 +163,22 @@ spec:
       runAfter:
       - clone-repository
       taskRef:
+        resolver: git
         params:
-        - name: name
-          value: prefetch-dependencies-oci-ta
-        - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-prefetch-dependencies-oci-ta:0.3@sha256:2229dbc5e15acc0a6d8aec526465aeb0ad54e269c311ac3d0aba88013845e308
-        - name: kind
-          value: task
-        resolver: bundles
+        - name: url
+          value: $(params.git-url)
+        - name: revision
+          value: $(params.revision)
+        - name: pathInRepo
+          value: ".tekton/prefetch-deps-oci-ta.yaml"
+      #  params:
+      #  - name: name
+      #    value: prefetch-dependencies-oci-ta
+      #  - name: bundle
+      #    value: quay.io/konflux-ci/tekton-catalog/task-prefetch-dependencies-oci-ta:0.3@sha256:2229dbc5e15acc0a6d8aec526465aeb0ad54e269c311ac3d0aba88013845e308
+      #  - name: kind
+      #    value: task
+      #  resolver: bundles
       workspaces:
       - name: git-basic-auth
         workspace: git-auth
